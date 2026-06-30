@@ -63,14 +63,14 @@ const LoveVouchers = () => {
       </p>
 
       {/* Horizontal Carousel */}
-      <div className="flex overflow-x-auto gap-6 px-4 py-4 scrollbar-thin scrollbar-thumb-rose-200/50 snap-x justify-start xl:justify-center">
+      <div className="flex overflow-x-auto gap-6 px-4 py-4 scrollbar-thin scrollbar-thumb-rose-200/50 snap-x justify-start">
         {VOUCHERS.map((voucher) => {
           const isFlipped = !!flippedCards[voucher.id];
 
           return (
             <div
               key={voucher.id}
-              className="w-72 h-96 flex-shrink-0 snap-center [perspective:1000px]"
+              className="w-72 h-96 flex-shrink-0 snap-start [perspective:1000px]"
             >
               <div
                 className={`relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] ${
