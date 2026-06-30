@@ -59,7 +59,7 @@ const LoveVouchers = () => {
         Your Keepsake Vouchers
       </h2>
       <p className="text-center text-sm text-stone-600 mb-8 max-w-md mx-auto">
-        Swipe or scroll through your digital voucher cards. Click "Claim Voucher" to flip and redeem them.
+        Some special promises and sweet privileges just for you, Mohtarma. Go ahead, flip and claim them whenever you&apos;d like! ✨💖
       </p>
 
       {/* Horizontal Carousel */}
