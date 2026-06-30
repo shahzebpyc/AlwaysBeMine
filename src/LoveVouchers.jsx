@@ -6,8 +6,8 @@ const VOUCHERS = [
     emoji: "📜",
     title: "The Mohtarma's Decree",
     frontText: "Voucher for 1 Absolute Command",
-    description: "This ticket grants the Mohtarma one free pass to command Shahzeb to do anything, no questions asked!",
-    backText: "Redeemed! 📜 Screenshot this card and send it to Shahzeb to claim your decree immediately.",
+    description: "This ticket grants the Mohtarma one free pass to command me to do anything, no questions asked!",
+    backText: "Redeemed! 📜 Screenshot this card and send it to me to claim your decree immediately.",
     colorTheme: "from-amber-500/30 to-rose-600/30 border-amber-400/50",
     buttonColor: "bg-amber-500 hover:bg-amber-600",
   },
@@ -17,7 +17,7 @@ const VOUCHERS = [
     title: "Mohtarma Special Date Night",
     frontText: "Voucher for a Dream Date",
     description: "Good for one custom-tailored date night to your favorite restaurant, including dessert and late-night talks.",
-    backText: "Redeemed! 🍽️ Reservation pending. Shahzeb will plan the perfect evening for you.",
+    backText: "Redeemed! 🍽️ Reservation pending. I will plan the perfect evening for you.",
     colorTheme: "from-pink-400/30 to-rose-500/30 border-pink-300/50",
     buttonColor: "bg-pink-500 hover:bg-pink-600",
   },
@@ -27,7 +27,7 @@ const VOUCHERS = [
     title: "Late Night Ice Cream & Chai",
     frontText: "Voucher for Late Night Cravings",
     description: "Valid for an emergency snack, chai, or ice cream run at any hour of the night, whenever you say the word.",
-    backText: "Redeemed! 🚗 Shahzeb is on his way with your favorite treats.",
+    backText: "Redeemed! 🚗 I'm on my way with your favorite treats.",
     colorTheme: "from-sky-400/30 to-teal-500/30 border-sky-300/50",
     buttonColor: "bg-sky-500 hover:bg-sky-600",
   },
@@ -36,8 +36,8 @@ const VOUCHERS = [
     emoji: "🧸",
     title: "Unlimited Comfort",
     frontText: "Voucher for Unlimited Comfort",
-    description: "Need a pick-me-up or a reassuring conversation after a long, stressful day? Redeem this for undivided attention and comfort from Shahzeb.",
-    backText: "Redeemed! ❤️ Shahzeb is all ears and ready to bring comfort to his Mohtarma.",
+    description: "Need a pick-me-up or a reassuring conversation after a long, stressful day? Redeem this for undivided attention and comfort from me.",
+    backText: "Redeemed! ❤️ I'm all ears and ready to bring comfort to my Mohtarma.",
     colorTheme: "from-violet-400/30 to-purple-600/30 border-violet-300/50",
     buttonColor: "bg-violet-500 hover:bg-violet-600",
   },
@@ -63,7 +63,7 @@ const LoveVouchers = () => {
       </p>
 
       {/* Horizontal Carousel */}
-      <div className="flex overflow-x-auto gap-6 px-4 py-4 scrollbar-thin scrollbar-thumb-rose-200/50 snap-x justify-start md:justify-center">
+      <div className="flex overflow-x-auto gap-6 px-4 py-4 scrollbar-thin scrollbar-thumb-rose-200/50 snap-x justify-start xl:justify-center">
         {VOUCHERS.map((voucher) => {
           const isFlipped = !!flippedCards[voucher.id];
 
