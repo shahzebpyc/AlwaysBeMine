@@ -19,12 +19,7 @@ const MarqueeProposal = () => {
     "Will you be the love of my life forever?",
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % sentences.length);
-    }, 9000); // Change sentence every 9 seconds
-    return () => clearInterval(interval);
-  }, [sentences.length]);
+
 
   return (
     <div
@@ -47,9 +42,12 @@ const MarqueeProposal = () => {
         style={{
           whiteSpace: "nowrap",
           position: "absolute",
-          animation: "marquee 10s linear infinite",
+          animation: "marquee 10s linear",
         }}
         key={currentIndex}
+        onAnimationEnd={() => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % sentences.length);
+        }}
       >
         <span
           style={{

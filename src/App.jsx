@@ -192,6 +192,8 @@ export default function Page() {
         width: 700,
         padding: "2em",
         color: "#716add",
+        confirmButtonText: "Theek hai, thode aur nakhre karti hoon! 😉💖",
+        confirmButtonColor: "#e11d48",
         background: `#fff url(${swalbg})`,
         backdrop: `
           rgba(0,0,123,0.2)
@@ -208,6 +210,8 @@ export default function Page() {
         width: 800,
         padding: "2em",
         color: "#716add",
+        confirmButtonText: "Yes, forever and always! 💍❤️",
+        confirmButtonColor: "#059669",
         background: `#fff url(${swalbg})`,
         backdrop: `
           rgba(0,0,123,0.7)
@@ -284,6 +288,8 @@ export default function Page() {
         width: 850,
         padding: "2em",
         color: "#716add",
+        confirmButtonText: "Okay, I will click 'Yes' now! 🥰",
+        confirmButtonColor: "#dc2626",
         background: `#fff url(${swalbg})`,
         backdrop: `
           rgba(0, 104, 123, 0.7)
@@ -304,7 +310,7 @@ export default function Page() {
 
       {noCount > 16 && noCount < 25 && yesPressed == false && <MouseStealing />}
 
-      <div className={`${yesPressed && noCount > 3 ? "overflow-y-auto min-h-screen py-16" : "overflow-hidden h-screen -mt-16"} w-full flex flex-col items-center justify-center pt-4 selection:bg-rose-600 selection:text-white text-zinc-900`}>
+      <div className={`${yesPressed && noCount > 3 ? "overflow-y-auto h-screen justify-start pt-12 pb-24" : "overflow-hidden h-screen justify-center -mt-16 pt-4"} w-full flex flex-col items-center selection:bg-rose-600 selection:text-white text-zinc-900`}>
         {yesPressed && noCount>3 ? (
           <>
             <img
