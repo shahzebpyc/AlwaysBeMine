@@ -12,6 +12,8 @@ import WordMareque from './MarqueeProposal.jsx';
 import purposerose from './assets/GifData/RoseCute.gif';
 import swalbg from './assets/Lovingbg2_main.jpg';
 import loveu from './assets/GifData/cutieSwal4.gif';
+import SealedLetter from "./SealedLetter.jsx";
+import LoveVouchers from "./LoveVouchers.jsx";
 
 //! yes - Gifs Importing
 import yesgif0 from "./assets/GifData/Yes/lovecutie0.gif";
@@ -61,8 +63,6 @@ export default function Page() {
   const [currentAudio, setCurrentAudio] = useState(null); // Tracks the currently playing song
   const [currentGifIndex, setCurrentGifIndex] = useState(0); // Track the current gif index
   const [isMuted, setIsMuted] = useState(false);
-  const [popupShown, setPopupShown] = useState(false);
-  const [yespopupShown, setYesPopupShown] = useState(false);
 
   const gifRef = useRef(null); // Ref to ensure gif plays infinitely
   const yesButtonSize = noCount * 16 + 16;
@@ -179,12 +179,43 @@ export default function Page() {
   };
   
   const handleYesClick = () => {
-    if(!popupShown){ // Only for Swal Fire Popup
-      setYesPressed(true);
-    }
-    if(noCount>3){
+    if (noCount < 4) {
+      Swal.fire({
+        title: "I love you so much! ❤️ You’ve stolen my heart completely! 🥰💖 But itni pyaari mohtarma aur itni jaldi haan? Thoda aur nakhre toh bante hain! 🥰✨",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        width: 700,
+        padding: "2em",
+        color: "#716add",
+        background: `#fff url(${swalbg})`,
+        backdrop: `
+          rgba(0,0,123,0.2)
+          url(${loveu})
+          right
+          no-repeat
+        `,
+      });
+    } else {
       setYesPressed(true);
       playMusic(YesMusic[0], YesMusic); // Play the first "Yes" music by default
+      Swal.fire({
+        title: "I love you so much, my beautiful Mohtarma! ❤️ You are my everything, my joy, my forever. Every moment with you is a memory I’ll cherish forever, and my heart beats only for you.<br/><br/>Will you be the love of my life forever?",
+        width: 800,
+        padding: "2em",
+        color: "#716add",
+        background: `#fff url(${swalbg})`,
+        backdrop: `
+          rgba(0,0,123,0.7)
+          url(${purposerose})
+          right
+          no-repeat
+        `,
+      });
     }
   };
   
@@ -244,57 +275,12 @@ export default function Page() {
     return phrases[Math.min(noCount, phrases.length - 1)];
   };
 
-  useEffect(() => {
-    if (yesPressed && noCount < 4 && !popupShown) {
-      Swal.fire({
-        title: "I love you sooo Much!!!❤️, You’ve stolen my heart completely!!! 🥰💖 But itni pyaari ladki aur itni jaldi haan? Thoda aur nakhre karke mujhe tarpaao na! 🥰✨",
-        showClass: {
-          popup: `
-            animate__animated
-            animate__fadeInUp
-            animate__faster
-          `
-        },
-        width: 700,
-        padding: "2em",
-        color: "#716add",
-        background: `#fff url(${swalbg})`,
-        backdrop: `
-          rgba(0,0,123,0.2)
-          url(${loveu})
-          right
-          no-repeat
-        `,
-      });
-      setPopupShown(true);
-      setYesPressed(false);
-    }
-  }, [yesPressed, noCount, popupShown]);
-  
-  useEffect(() => {
-    if (yesPressed && noCount > 3 && !yespopupShown) {
-      Swal.fire({
-        title: "I love you so much!! ❤️ You are my everything, my joy, my forever. Every moment with you is a memory I’ll cherish forever, and my heart beats only for you.</br> Will you be the love of my life forever?",
-        width: 800,
-        padding: "2em",
-        color: "#716add",
-        background: `#fff url(${swalbg})`,
-        backdrop: `
-          rgba(0,0,123,0.7)
-          url(${purposerose})
-          right
-          no-repeat
-        `,
-      });
-      setYesPopupShown(true);
-      setYesPressed(true);
-    }
-  }, [yesPressed, noCount, yespopupShown]);
+
 
   useEffect(() => {
     if (noCount == 25) {
       Swal.fire({
-        title: "My love for you is endless, like the stars in the sky—shining for you every night, even if you don’t always notice. 🌟 I’ll wait patiently, proving every day that you’re my everything. ❤️ Please press ‘Yes’ and let’s make this a forever story. 🥰✨<br/>'True love never gives up; it grows stronger with time.'",
+        title: "My love for you is endless, my beautiful Mohtarma—like the stars in the sky shining for you every night, even if you don’t always notice. 🌟 I’ll wait patiently, proving every day that you’re my everything. ❤️ Please press ‘Yes’ and let’s make this a forever story. 🥰✨<br/><br/>'True love never gives up; it grows stronger with time.'",
         width: 850,
         padding: "2em",
         color: "#716add",
@@ -318,7 +304,7 @@ export default function Page() {
 
       {noCount > 16 && noCount < 25 && yesPressed == false && <MouseStealing />}
 
-      <div className="overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white text-zinc-900">
+      <div className={`${yesPressed && noCount > 3 ? "overflow-y-auto min-h-screen py-16" : "overflow-hidden h-screen -mt-16"} w-full flex flex-col items-center justify-center pt-4 selection:bg-rose-600 selection:text-white text-zinc-900`}>
         {yesPressed && noCount>3 ? (
           <>
             <img
@@ -327,9 +313,11 @@ export default function Page() {
               src={YesGifs[currentGifIndex]}
               alt="Yes Response"
             />
-            <div className="text-4xl md:text-6xl font-bold my-2" style={{ fontFamily: "Charm, serif", fontWeight: "700", fontStyle: "normal" }}>I Love You !!!</div>
+            <div className="text-4xl md:text-6xl font-bold my-2" style={{ fontFamily: "Charm, serif", fontWeight: "700", fontStyle: "normal" }}>I Love You, Mohtarma!!! ❤️</div>
             <div  className="text-4xl md:text-4xl font-bold my-1" style={{ fontFamily: "Beau Rivage, serif", fontWeight: "500", fontStyle: "normal" }}> You’re the love of my life. </div> 
             <WordMareque />
+            <SealedLetter />
+            <LoveVouchers />
           </>
         ) : (
           <>
@@ -345,7 +333,7 @@ export default function Page() {
               alt="Love Animation"
             />
             <h1 className="text-4xl md:text-6xl my-4 text-center">
-              Will you be my Valentine?
+              Will you be my Valentine, Mohtarma? 🥹❤️
             </h1>
             <div className="flex flex-wrap justify-center gap-2 items-center">
               <button
@@ -393,7 +381,7 @@ const Footer = () => {
   return (
     <a
       className="fixed bottom-2 right-2 backdrop-blur-md opacity-80 hover:opacity-95 border p-1 rounded border-rose-300"
-      href="https://github.com/UjjwalSaini07"
+      href="https://github.com/shahzebpyc"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -401,7 +389,7 @@ const Footer = () => {
       <span role="img" aria-label="heart">
         ❤️
       </span>
-      {" "}by Ujjwal
+      {" "}by shahzeb
     </a>
   );
 };
