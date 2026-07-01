@@ -15,7 +15,6 @@ import loveu from './assets/GifData/cutieSwal4.gif';
 import SealedLetter from "./SealedLetter.jsx";
 import LoveVouchers from "./LoveVouchers.jsx";
 import TulipRain from "./TulipRain.jsx";
-import TulipBouquet from "./TulipBouquet.jsx";
 
 //! yes - Gifs Importing
 import yesgif0 from "./assets/GifData/Yes/lovecutie0.gif";
@@ -65,6 +64,7 @@ export default function Page() {
   const [currentAudio, setCurrentAudio] = useState(null); // Tracks the currently playing song
   const [currentGifIndex, setCurrentGifIndex] = useState(0); // Track the current gif index
   const [isMuted, setIsMuted] = useState(false);
+  const [isLetterOpen, setIsLetterOpen] = useState(false);
 
   const gifRef = useRef(null); // Ref to ensure gif plays infinitely
   const yesButtonSize = noCount * 16 + 16;
@@ -331,18 +331,21 @@ export default function Page() {
       <div className={`${yesPressed && noCount > 3 ? "overflow-y-auto h-screen justify-start pt-12 pb-24" : "overflow-hidden h-screen justify-center -mt-16 pt-4"} w-full flex flex-col items-center selection:bg-rose-600 selection:text-white text-zinc-900`}>
         {yesPressed && noCount>3 ? (
           <>
-            <img
-              ref={gifRef}
-              className="h-[230px] rounded-lg"
-              src={YesGifs[currentGifIndex]}
-              alt="Yes Response"
-            />
-            <div className="text-4xl md:text-6xl font-bold my-2" style={{ fontFamily: "Charm, serif", fontWeight: "700", fontStyle: "normal" }}>I Love You, Mohtarma!!! ❤️</div>
-            <div  className="text-4xl md:text-4xl font-bold my-1" style={{ fontFamily: "Beau Rivage, serif", fontWeight: "500", fontStyle: "normal" }}> You’re the love of my life. </div> 
-            <WordMareque />
-            <TulipBouquet />
-            <SealedLetter />
-            <LoveVouchers />
+            {!isLetterOpen && (
+              <>
+                <img
+                  ref={gifRef}
+                  className="h-[230px] rounded-lg"
+                  src={YesGifs[currentGifIndex]}
+                  alt="Yes Response"
+                />
+                <div className="text-4xl md:text-6xl font-bold my-2" style={{ fontFamily: "Charm, serif", fontWeight: "700", fontStyle: "normal" }}>I Love You, Mohtarma!!! ❤️</div>
+                <div  className="text-4xl md:text-4xl font-bold my-1" style={{ fontFamily: "Beau Rivage, serif", fontWeight: "500", fontStyle: "normal" }}> You’re the love of my life. </div> 
+                <WordMareque />
+              </>
+            )}
+            <SealedLetter isOpen={isLetterOpen} setIsOpen={setIsLetterOpen} />
+            {!isLetterOpen && <LoveVouchers />}
           </>
         ) : (
           <>
