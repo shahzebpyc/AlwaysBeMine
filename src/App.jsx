@@ -14,6 +14,8 @@ import swalbg from './assets/Lovingbg2_main.jpg';
 import loveu from './assets/GifData/cutieSwal4.gif';
 import SealedLetter from "./SealedLetter.jsx";
 import LoveVouchers from "./LoveVouchers.jsx";
+import TulipRain from "./TulipRain.jsx";
+import TulipBouquet from "./TulipBouquet.jsx";
 
 //! yes - Gifs Importing
 import yesgif0 from "./assets/GifData/Yes/lovecutie0.gif";
@@ -90,24 +92,38 @@ export default function Page() {
   };
   
   const handleMouseEnterYes = () => {
-    const gifs = [];
+    const items = [];
     const positions = [];
   
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 12; i++) {
       const newPosition = generateRandomPositionWithSpacing(positions);
       positions.push(newPosition);
   
-      gifs.push({
-        id: `heart-${i}`,
-        src: heartGif,
-        style: {
-          ...newPosition,
-          animationDuration: `${Math.random() * 2 + 1}s`,
-        },
-      });
+      if (i % 2 === 0) {
+        items.push({
+          id: `heart-${i}`,
+          type: "image",
+          src: heartGif,
+          style: {
+            ...newPosition,
+            animationDuration: `${Math.random() * 2 + 1}s`,
+          },
+        });
+      } else {
+        items.push({
+          id: `tulip-${i}`,
+          type: "text",
+          content: Math.random() > 0.5 ? "🌷" : "🌸",
+          style: {
+            ...newPosition,
+            animationDuration: `${Math.random() * 2 + 1}s`,
+            fontSize: `${Math.random() * 1.5 + 2}rem`,
+          },
+        });
+      }
     }
   
-    setFloatingGifs(gifs);
+    setFloatingGifs(items);
   };
   
   const handleMouseEnterNo = () => {
@@ -308,6 +324,8 @@ export default function Page() {
         {/* <Spline scene="https://prod.spline.design/ZU2qkrU9Eyt1PHBx/scene.splinecode" /> */}
       </div>
 
+      <TulipRain />
+
       {noCount > 16 && noCount < 25 && yesPressed == false && <MouseStealing />}
 
       <div className={`${yesPressed && noCount > 3 ? "overflow-y-auto h-screen justify-start pt-12 pb-24" : "overflow-hidden h-screen justify-center -mt-16 pt-4"} w-full flex flex-col items-center selection:bg-rose-600 selection:text-white text-zinc-900`}>
@@ -322,6 +340,7 @@ export default function Page() {
             <div className="text-4xl md:text-6xl font-bold my-2" style={{ fontFamily: "Charm, serif", fontWeight: "700", fontStyle: "normal" }}>I Love You, Mohtarma!!! ❤️</div>
             <div  className="text-4xl md:text-4xl font-bold my-1" style={{ fontFamily: "Beau Rivage, serif", fontWeight: "500", fontStyle: "normal" }}> You’re the love of my life. </div> 
             <WordMareque />
+            <TulipBouquet />
             <SealedLetter />
             <LoveVouchers />
           </>
@@ -360,15 +379,25 @@ export default function Page() {
                 {noCount === 0 ? "No" : getNoButtonText()}
               </button>
             </div>
-            {floatingGifs.map((gif) => (
-              <img
-                key={gif.id}
-                src={gif.src}
-                alt="Floating Animation"
-                className="absolute w-12 h-12 animate-bounce"
-                style={gif.style}
-              />
-            ))}
+            {floatingGifs.map((gif) => 
+              gif.type === "text" ? (
+                <div
+                  key={gif.id}
+                  className="absolute animate-bounce select-none pointer-events-none"
+                  style={gif.style}
+                >
+                  {gif.content}
+                </div>
+              ) : (
+                <img
+                  key={gif.id}
+                  src={gif.src}
+                  alt="Floating Animation"
+                  className="absolute w-12 h-12 animate-bounce"
+                  style={gif.style}
+                />
+              )
+            )}
           </>
         )}
         <button
