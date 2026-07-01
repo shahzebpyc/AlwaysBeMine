@@ -1,59 +1,101 @@
-import React, { useState } from "react";
+import React from "react";
 import Swal from "sweetalert2";
 
 const TULIPS = [
   {
     id: 1,
-    color: "from-pink-400 to-rose-500",
-    shadow: "shadow-pink-300",
     title: "A Promise of Growth 🌷",
     message: "My love for you grows deeper and more beautiful every single day, just like a blooming tulip. You are my forever spring, Laiba. ❤️",
-    position: "top-4 left-6",
+    position: "left-[8%] top-[5%]",
     rotation: "-rotate-12",
+    swayDelay: "0s",
+    colors: {
+      backStart: "#db2777",
+      backEnd: "#9d174d",
+      leftStart: "#f472b6",
+      leftEnd: "#db2777",
+      rightStart: "#ec4899",
+      rightEnd: "#be185d",
+      frontStart: "#fbcfe8",
+      frontEnd: "#f472b6",
+    }
   },
   {
     id: 2,
-    color: "from-rose-500 to-red-600",
-    shadow: "shadow-rose-400",
     title: "A Promise of Commitment 💍",
     message: "I promise to hold your hand, listen to your heartbeat, and love you endlessly through every single chapter of our lives as your husband. 💍✨",
-    position: "top-0 left-1/2 -translate-x-1/2",
-    rotation: "rotate-0",
+    position: "left-[36%] top-[-5%]",
+    rotation: "-rotate-3",
+    swayDelay: "0.8s",
+    colors: {
+      backStart: "#dc2626",
+      backEnd: "#991b1b",
+      leftStart: "#f87171",
+      leftEnd: "#dc2626",
+      rightStart: "#ef4444",
+      rightEnd: "#b91c1c",
+      frontStart: "#fca5a5",
+      frontEnd: "#f87171",
+    }
   },
   {
     id: 3,
-    color: "from-amber-400 to-amber-500",
-    shadow: "shadow-amber-200",
     title: "A Promise of Joy 🧸",
     message: "No matter how busy life gets, I promise to make you laugh, bring you ice cream, and protect that gorgeous smile of yours. 🍦💛",
-    position: "top-6 right-6",
+    position: "left-[64%] top-[2%]",
     rotation: "rotate-12",
+    swayDelay: "1.5s",
+    colors: {
+      backStart: "#d97706",
+      backEnd: "#92400e",
+      leftStart: "#fbbf24",
+      leftEnd: "#d97706",
+      rightStart: "#f59e0b",
+      rightEnd: "#b45309",
+      frontStart: "#fde68a",
+      frontEnd: "#fbbf24",
+    }
   },
   {
     id: 4,
-    color: "from-pink-300 to-pink-500",
-    shadow: "shadow-pink-200",
     title: "A Promise of Sanctuary 🏡",
     message: "You're not just my partner, Laiba; you are my home, my comfort, and my favorite adventure. I can't wait to build a beautiful life together. 🏡💞",
-    position: "top-16 left-12",
+    position: "left-[18%] top-[16%]",
     rotation: "-rotate-6",
+    swayDelay: "2.2s",
+    colors: {
+      backStart: "#7e22ce",
+      backEnd: "#581c87",
+      leftStart: "#a855f7",
+      leftEnd: "#7e22ce",
+      rightStart: "#8b5cf6",
+      rightEnd: "#6d28d9",
+      frontStart: "#d8b4fe",
+      frontEnd: "#a855f7",
+    }
   },
   {
     id: 5,
-    color: "from-purple-400 to-indigo-500",
-    shadow: "shadow-purple-300",
     title: "A Promise of Eternity 👩‍❤️‍👨",
     message: "Thank you for being the sweetest, most elegant Mohtarma and choosing me. I will cherish you, respect you, and stand by you for all of eternity. 👩‍❤️‍👨✨",
-    position: "top-14 right-12",
+    position: "left-[48%] top-[14%]",
     rotation: "rotate-6",
+    swayDelay: "1.1s",
+    colors: {
+      backStart: "#ea580c",
+      backEnd: "#9a3412",
+      leftStart: "#fb923c",
+      leftEnd: "#ea580c",
+      rightStart: "#f97316",
+      rightEnd: "#c2410c",
+      frontStart: "#ffedd5",
+      frontEnd: "#fdba74",
+    }
   },
 ];
 
 const TulipBouquet = () => {
-  const [activeTulip, setActiveTulip] = useState(null);
-
   const handleTulipClick = (tulip) => {
-    setActiveTulip(tulip);
     Swal.fire({
       title: `<span style="font-family: 'Charm', serif; font-weight: bold; color: #e11d48">${tulip.title}</span>`,
       html: `<p style="font-family: 'Charm', serif; font-size: 1.15rem; line-height: 1.6; color: #374151">${tulip.message}</p>`,
@@ -72,87 +114,185 @@ const TulipBouquet = () => {
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto my-8 px-4 z-20 flex flex-col items-center">
+    <div className="w-full max-w-lg mx-auto my-8 px-4 z-20 flex flex-col items-center select-none">
       <h2
-        className="text-2xl md:text-3xl text-center text-rose-500 font-bold mb-1"
+        className="text-3xl md:text-4xl text-center text-rose-500 font-bold mb-1"
         style={{ fontFamily: "Charm, serif" }}
       >
         Your Virtual Tulip Bouquet 🌷
       </h2>
-      <p className="text-center text-xs text-stone-600 mb-8 max-w-sm">
+      <p className="text-center text-sm text-stone-600 mb-8 max-w-sm">
         Click on each tulip in the bouquet to unlock a hidden promise from my heart to yours. ✨
       </p>
 
-      {/* The Bouquet Graphic */}
-      <div className="relative w-72 h-80 bg-transparent flex flex-col items-center">
-        {/* Tulips Container */}
-        <div className="absolute inset-x-0 top-0 h-44 z-10">
-          {TULIPS.map((tulip) => (
-            <button
-              key={tulip.id}
-              onClick={() => handleTulipClick(tulip)}
-              className={`absolute ${tulip.position} ${tulip.rotation} transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 focus:outline-none`}
-            >
-              {/* Tulip Flower Head */}
-              <div className="relative group">
-                <div className="flex flex-col items-center">
-                  <div
-                    className={`w-10 h-12 rounded-t-full bg-gradient-to-b ${tulip.color} shadow-lg ${tulip.shadow} flex justify-center items-end relative overflow-hidden`}
-                  >
-                    {/* Inner petal lines/shading */}
-                    <div className="absolute inset-y-0 left-1/3 w-0.5 bg-white/20" />
-                    <div className="absolute inset-y-0 right-1/3 w-0.5 bg-white/20" />
-                    {/* Tulip Petal Overlap */}
-                    <div className="absolute bottom-0 w-8 h-8 rounded-full border-t border-white/30 bg-black/5" />
-                  </div>
+      {/* 3D Layered Bouquet Container */}
+      <div className="relative w-80 h-96 flex flex-col items-center">
+        
+        {/* Layer 0: Backing Wrapper (Inside shadow & background paper) */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <svg viewBox="0 0 300 400" className="w-full h-full">
+            <path
+              d="M35,160 C80,90 220,90 265,160 C245,220 200,320 150,380 C100,320 55,220 35,160 Z"
+              fill="url(#backWrapGrad)"
+            />
+            <defs>
+              <linearGradient id="backWrapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#eed9c4" />
+                <stop offset="100%" stopColor="#d5bdaf" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        {/* Layer 1: Stems & Flowers (Interactive) */}
+        <div className="absolute inset-0 z-10 pointer-events-auto">
+          {TULIPS.map((tulip) => {
+            const c = tulip.colors;
+            return (
+              <button
+                key={tulip.id}
+                onClick={() => handleTulipClick(tulip)}
+                className={`absolute ${tulip.position} ${tulip.rotation} w-24 h-44 focus:outline-none transition-transform duration-300 hover:scale-110 hover:-translate-y-2`}
+                style={{
+                  animation: `tulip-sway 4s ease-in-out infinite`,
+                  animationDelay: tulip.swayDelay,
+                  transformOrigin: "bottom center",
+                }}
+              >
+                <svg viewBox="0 0 100 200" className="w-full h-full drop-shadow-md">
+                  <defs>
+                    <linearGradient id={`gradBack-${tulip.id}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor={c.backStart} />
+                      <stop offset="100%" stopColor={c.backEnd} />
+                    </linearGradient>
+                    <linearGradient id={`gradLeft-${tulip.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor={c.leftStart} />
+                      <stop offset="100%" stopColor={c.leftEnd} />
+                    </linearGradient>
+                    <linearGradient id={`gradRight-${tulip.id}`} x1="100%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor={c.rightStart} />
+                      <stop offset="100%" stopColor={c.rightEnd} />
+                    </linearGradient>
+                    <linearGradient id={`gradFront-${tulip.id}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor={c.frontStart} />
+                      <stop offset="100%" stopColor={c.frontEnd} />
+                    </linearGradient>
+                  </defs>
+                  
                   {/* Stem */}
-                  <div className="w-1.5 h-16 bg-emerald-500/80 -mt-1 rounded-full relative">
-                    {/* Stem Leaf */}
-                    <div className="absolute top-2 -left-3 w-4 h-2 bg-emerald-500/70 rounded-full rotate-45" />
-                  </div>
-                </div>
-                {/* Glow Ring */}
-                <div className="absolute -inset-1 rounded-full bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm" />
-              </div>
-            </button>
-          ))}
+                  <path d="M50,90 Q47,150 50,200" stroke="#10b981" strokeWidth="4" fill="none" strokeLinecap="round" />
+                  
+                  {/* Leaves */}
+                  <path d="M50,140 Q25,120 35,95 Q45,120 50,140" fill="#047857" opacity="0.9" />
+                  <path d="M50,155 Q75,135 65,110 Q55,135 50,155" fill="#065f46" opacity="0.85" />
+
+                  {/* Tulip Flower Bud */}
+                  <g className="cursor-pointer">
+                    {/* Back center petal */}
+                    <path d="M50,20 C32,20 35,80 50,90 C65,80 68,20 50,20 Z" fill={`url(#gradBack-${tulip.id})`} />
+                    
+                    {/* Left wing petal */}
+                    <path d="M50,20 C24,28 20,78 50,90 C36,70 36,35 50,20 Z" fill={`url(#gradLeft-${tulip.id})`} />
+                    
+                    {/* Right wing petal */}
+                    <path d="M50,20 C76,28 80,78 50,90 C64,70 64,35 50,20 Z" fill={`url(#gradRight-${tulip.id})`} />
+                    
+                    {/* Front center petal */}
+                    <path d="M50,28 C36,38 36,75 50,90 C64,75 64,38 50,28 Z" fill={`url(#gradFront-${tulip.id})`} />
+                  </g>
+                </svg>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Bouquet Wrap Wrapper */}
-        <div className="absolute bottom-4 w-44 h-48 flex justify-center items-end">
-          {/* Stem Bunches */}
-          <div className="absolute bottom-2 flex gap-1 z-0">
-            <div className="w-1.5 h-20 bg-emerald-600/90 rotate-6 rounded-full" />
-            <div className="w-1.5 h-20 bg-emerald-600/90 -rotate-3 rounded-full" />
-            <div className="w-1.5 h-20 bg-emerald-600/90 -rotate-12 rounded-full" />
-            <div className="w-1.5 h-20 bg-emerald-600/90 rotate-12 rounded-full" />
-          </div>
-
-          {/* Wrap paper (cone shape) */}
-          <div className="relative w-44 h-40 overflow-hidden z-20">
-            {/* Left wrap fold */}
-            <div className="absolute bottom-0 left-0 w-32 h-36 bg-amber-100/90 border border-amber-200/50 rounded-tr-3xl shadow-md rotate-12 origin-bottom-left" style={{ clipPath: "polygon(0 0, 100% 0, 80% 100%, 0% 100%)" }} />
-            {/* Right wrap fold */}
-            <div className="absolute bottom-0 right-0 w-32 h-36 bg-amber-50/95 border border-amber-200/50 rounded-tl-3xl shadow-lg -rotate-12 origin-bottom-right" style={{ clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)" }} />
-
-            {/* Ribbon Bow */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-30">
-              {/* Bow loop */}
-              <div className="flex gap-2">
-                <div className="w-6 h-4 bg-rose-500 rounded-full rotate-12 border border-rose-600" />
-                <div className="w-6 h-4 bg-rose-500 rounded-full -rotate-12 border border-rose-600" />
-              </div>
-              {/* Bow center knot */}
-              <div className="w-4 h-4 bg-rose-600 rounded-full -mt-3.5 border border-rose-700 shadow-md" />
-              {/* Bow tails */}
-              <div className="flex gap-4 -mt-1">
-                <div className="w-1.5 h-6 bg-rose-500 rotate-12 rounded-full" />
-                <div className="w-1.5 h-6 bg-rose-500 -rotate-12 rounded-full" />
-              </div>
-            </div>
-          </div>
+        {/* Layer 2: Front Wrapping Paper & Silk Ribbon Bow (Overlay, click-through) */}
+        <div className="absolute inset-0 z-20 pointer-events-none">
+          <svg viewBox="0 0 300 400" className="w-full h-full drop-shadow-2xl">
+            {/* Left wrap flap */}
+            <path
+              d="M30,170 C90,195 120,320 150,380 C95,310 45,240 30,170 Z"
+              fill="#ebd9d5"
+              opacity="0.85"
+            />
+            
+            {/* Right wrap flap (overlap) */}
+            <path
+              d="M270,170 C210,195 180,320 150,380 C205,310 255,240 270,170 Z"
+              fill="#f5ebe0"
+              opacity="0.9"
+            />
+            
+            {/* Center overlap wrap */}
+            <path
+              d="M65,190 C120,170 180,170 235,190 C195,280 170,350 150,380 C130,350 105,280 65,190 Z"
+              fill="url(#frontWrapGrad)"
+              stroke="#eed9c4"
+              strokeWidth="0.5"
+            />
+            
+            {/* Folds shaded accents */}
+            <path d="M65,190 C100,165 140,210 150,380 C135,210 85,200 65,190 Z" fill="#e3d5ca" opacity="0.4" />
+            <path d="M235,190 C200,165 160,210 150,380 C165,210 215,200 235,190 Z" fill="#f5ebe0" opacity="0.4" />
+            
+            {/* Silk Ribbon Bow */}
+            {/* Left loop */}
+            <path
+              d="M150,320 C120,295 105,315 125,325 C135,330 145,325 150,320 Z"
+              fill="url(#ribbonGrad)"
+              stroke="#f43f5e"
+              strokeWidth="0.5"
+            />
+            {/* Right loop */}
+            <path
+              d="M150,320 C180,295 195,315 175,325 C165,330 155,325 150,320 Z"
+              fill="url(#ribbonGrad)"
+              stroke="#f43f5e"
+              strokeWidth="0.5"
+            />
+            {/* Knot */}
+            <circle cx="150" cy="320" r="7" fill="#be185d" />
+            {/* Tails */}
+            <path
+              d="M148,323 C138,345 142,365 135,375"
+              fill="none"
+              stroke="#be185d"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            <path
+              d="M152,323 C162,345 158,365 165,375"
+              fill="none"
+              stroke="#be185d"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            
+            <defs>
+              <linearGradient id="frontWrapGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#f5ebe0" />
+                <stop offset="100%" stopColor="#e3d5ca" />
+              </linearGradient>
+              <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#fda4af" />
+                <stop offset="100%" stopColor="#f43f5e" />
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
+
       </div>
+
+      <style>{`
+        @keyframes tulip-sway {
+          0%, 100% {
+            transform: rotate(var(--tw-rotate, 0deg));
+          }
+          50% {
+            transform: rotate(calc(var(--tw-rotate, 0deg) + 3deg)) translateY(-1px);
+          }
+        }
+      `}</style>
     </div>
   );
 };
