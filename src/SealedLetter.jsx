@@ -3,6 +3,15 @@ import React, { useState, useEffect } from "react";
 const SealedLetter = ({ isOpen, setIsOpen }) => {
   const [typedText, setTypedText] = useState("");
   const [isFlowerLoaded, setIsFlowerLoaded] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
+
+  const handleOpenClick = () => {
+    setIsOpening(true);
+    setTimeout(() => {
+      setIsOpen(true);
+      setIsOpening(false);
+    }, 1200);
+  };
 
   const greetingText = "Dearest Laiba,";
   const bodyText = `From the moment you walked into my life, you completely changed my world. You are the sweetest, most elegant Mohtarma, and my heart belongs entirely to you.
@@ -75,32 +84,62 @@ Shahzeb ❤️`;
   }, [isOpen]);
 
   return (
-    <div className="flex flex-col items-center justify-center my-8 w-full max-w-lg px-4 z-20">
+    <div className={`flex flex-col items-center justify-center my-8 w-full max-w-lg px-4 transition-all duration-500 ${isOpening ? "z-[60]" : "z-20"}`}>
+      {/* Seamless Transition Dark Fade-in Overlay */}
+      {isOpening && (
+        <div className="fixed inset-0 bg-[#030712] z-50 animate-fade-in-dark"></div>
+      )}
+
       {!isOpen ? (
         <div 
-          onClick={() => setIsOpen(true)}
-          className="relative w-80 h-52 bg-amber-100/90 rounded-b-xl shadow-2xl cursor-pointer transform hover:-translate-y-2 transition-all duration-500 flex items-center justify-center border border-amber-200/50"
+          onClick={handleOpenClick}
+          className={`relative w-80 h-52 bg-[#fdf6e2] rounded-b-xl shadow-2xl transition-all duration-700 flex items-center justify-center border border-[#ebdcb9] ${isOpening ? "pointer-events-none scale-95 opacity-0 translate-y-[-20px] delay-700" : "cursor-pointer hover:-translate-y-2"}`}
+          style={{ perspective: "1000px" }}
         >
           {/* Top Flap */}
-          <div className="absolute top-0 left-0 right-0 h-0 border-l-[160px] border-l-transparent border-r-[160px] border-r-transparent border-t-[110px] border-t-amber-200/95 origin-top transition-transform duration-500 z-30" />
+          <div 
+            className="absolute top-0 left-0 right-0 h-0 border-l-[160px] border-l-transparent border-r-[160px] border-r-transparent border-t-[110px] border-t-[#eddcb8] origin-top transition-all duration-500 z-30" 
+            style={{
+              transform: isOpening ? "rotateX(180deg) translateY(-2px)" : "rotateX(0deg)",
+              transformOrigin: "top center",
+              borderTopColor: isOpening ? "#e6cfab" : "#eddcb8"
+            }}
+          />
           
-          {/* Inner Pocket Background */}
-          <div className="absolute inset-0 bg-amber-50 rounded-b-xl overflow-hidden z-10">
-            {/* Left and Right folds */}
-            <div className="absolute bottom-0 left-0 w-0 h-0 border-l-[160px] border-l-amber-200/60 border-t-[110px] border-t-transparent z-20" />
-            <div className="absolute bottom-0 right-0 w-0 h-0 border-r-[160px] border-r-amber-200/60 border-t-[110px] border-t-transparent z-20" />
-            {/* Bottom Fold */}
-            <div className="absolute bottom-0 left-0 right-0 h-0 border-l-[160px] border-l-transparent border-r-[160px] border-r-transparent border-b-[110px] border-b-amber-100/90 z-20" />
-          </div>
-
           {/* Wax Seal */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-rose-600 rounded-full flex items-center justify-center shadow-lg border-2 border-rose-700 hover:scale-110 active:scale-95 transition-transform duration-300 z-40 animate-pulse">
+          <div 
+            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-rose-600 rounded-full flex items-center justify-center shadow-lg border-2 border-rose-700 transition-all duration-500 z-40 ${isOpening ? "opacity-0 scale-75" : "animate-pulse hover:scale-110"}`}
+          >
             <span className="text-white text-3xl font-bold select-none">❤️</span>
           </div>
-          
-          <div className="absolute bottom-4 text-amber-700/60 text-xs font-semibold tracking-wider font-mono">
-            CLICK TO OPEN
+
+          {/* Letter preview inside envelope that slides up */}
+          <div 
+            className="absolute bottom-2 w-[280px] h-[150px] bg-[#fcf9f2] border border-amber-900/10 shadow-inner rounded-t z-15 transition-all duration-1000 ease-in-out flex flex-col items-center justify-start p-4"
+            style={{
+              transform: isOpening ? "translateY(-130px) scale(1.05)" : "translateY(0) scale(1)",
+              opacity: isOpening ? 0.9 : 0.4
+            }}
+          >
+            <div className="w-20 h-1 bg-amber-900/20 rounded mb-2"></div>
+            <div className="w-40 h-1 bg-amber-900/10 rounded mb-1"></div>
+            <div className="w-36 h-1 bg-amber-900/10 rounded"></div>
           </div>
+          
+          {/* Inner Pocket Background */}
+          <div className="absolute inset-0 bg-[#f5ebd3] rounded-b-xl overflow-hidden z-10">
+            {/* Left and Right folds */}
+            <div className="absolute bottom-0 left-0 w-0 h-0 border-l-[160px] border-l-[#eedfb9]/80 border-t-[110px] border-t-transparent z-20" />
+            <div className="absolute bottom-0 right-0 w-0 h-0 border-r-[160px] border-r-[#eedfb9]/80 border-t-[110px] border-t-transparent z-20" />
+            {/* Bottom Fold */}
+            <div className="absolute bottom-0 left-0 right-0 h-0 border-l-[160px] border-l-transparent border-r-[160px] border-r-transparent border-b-[110px] border-b-[#fcf5e3]/90 z-20" />
+          </div>
+
+          {!isOpening && (
+            <div className="absolute bottom-4 text-amber-700/60 text-xs font-semibold tracking-wider font-mono z-25">
+              CLICK TO OPEN
+            </div>
+          )}
         </div>
       ) : (
         /* Magic Reveal Full Screen Overlay */
@@ -1281,6 +1320,14 @@ Shahzeb ❤️`;
             }
             .sealed-letter-modal .growing-grass {
               animation: growing-grass-ans 1s 2s backwards;
+            }
+
+            @keyframes fade-in-dark {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+            .animate-fade-in-dark {
+              animation: fade-in-dark 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             }
 
             @keyframes leaf-ans-1 { 0%, 100% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.1); } }
