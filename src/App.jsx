@@ -206,7 +206,7 @@ export default function Page() {
       setYesPressed(true);
       playMusic(YesMusic[0], YesMusic); // Play the first "Yes" music by default
       Swal.fire({
-        title: "I love you so much, my beautiful Mohtarma! ❤️ You are my everything, my joy, my forever. Every moment with you is a memory I’ll cherish forever, and my heart beats only for you.<br/><br/>Will you be the love of my life forever?",
+        title: "I love you so much, my beautiful Mohtarma! ❤️ You are my everything, my joy, my forever. Every moment with you is a memory I’ll cherish forever, and my heart beats only for you.<br/><br/>Will you marry me and make me the happiest man alive? 💍❤️",
         width: 800,
         padding: "2em",
         color: "#716add",
@@ -339,7 +339,7 @@ export default function Page() {
               alt="Love Animation"
             />
             <h1 className="text-4xl md:text-6xl my-4 text-center">
-              Will you be my Valentine, Mohtarma? 🥹❤️
+              Will you marry me, Mohtarma? 💍❤️
             </h1>
             <div className="flex flex-wrap justify-center gap-2 items-center">
               <button

@@ -16,7 +16,10 @@ const MarqueeProposal = () => {
     "You make even ordinary moments feel extraordinary.",
     "You make my world brighter and happier.",
     "You're the dream I never want to wake up from.",
-    "Will you be the love of my life forever?",
+    "Will you marry me, Mohtarma? 💍❤️",
+    "I want to grow old with you. 👩‍❤️‍👨",
+    "Forever starts now, with you. ✨💖",
+    "Will you walk with me forever? 💍✨",
   ];
 
 
